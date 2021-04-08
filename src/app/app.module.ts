@@ -6,12 +6,14 @@ import { HeaderComponent } from './header/header.component';
 import { HeroComponent } from './hero/hero.component';
 import {HeroService} from "./hero/hero.service";
 import {HttpClientModule} from "@angular/common/http";
+import { RaceComponent } from './race/race.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HeroComponent
+    HeroComponent,
+    RaceComponent
   ],
   imports: [
     BrowserModule,

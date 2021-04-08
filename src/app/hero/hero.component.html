@@ -1,1 +1,10 @@
-<p>hero works!</p>
+<div class="row p-3">
+  <ul *ngIf="heroes.length > 0" class="list-group">
+    <li class="list-group-item"
+        *ngFor="let hero of heroes">
+      <h1>{{hero.name}}</h1>
+      <p>{{hero.race.name}}</p>
+    </li>
+  </ul>
+</div>
+
