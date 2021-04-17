@@ -1,30 +1,46 @@
 <div class="row">
-<!--  <div class="col">-->
-<!--    <h2>Add origin</h2>-->
-<!--    <form [formGroup]="originForm" (ngSubmit)="onOriginSubmit()">-->
-<!--      <div class="mb-3">-->
-<!--        <label for="name" class="form-label">Nazwa</label>-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          id="name"-->
-<!--          class="form-control">-->
-<!--      </div>-->
-<!--      <div class="mb-3">-->
-<!--        <label for="description" class="form-label">Opis</label>-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          id="description"-->
-<!--          class="form-control">-->
-<!--      </div>-->
-<!--      <div class="mb-3">-->
-<!--        <button-->
-<!--          type="submit"-->
-<!--          class="btn btn-success"-->
-<!--          [disabled]="!originForm.valid">Dodaj-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </form>-->
-<!--  </div>-->
+  <div class="col">
+    <h2>Dodaj pochodzenie</h2>
+    <form [formGroup]="originForm" (ngSubmit)="onOriginSubmit()">
+      <div class="mb-3">
+        <label for="originName" class="form-label">Nazwa</label>
+        <input
+          type="text"
+          id="originName"
+          formControlName="name"
+          class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Opis</label>
+        <input
+          type="text"
+          id="description"
+          formControlName="description"
+          class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="proficiencies" class="form-label">Biegłości</label>
+        <ng-multiselect-dropdown
+          id="proficiencies"
+          formControlName="proficiencies"
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          [placeholder]="'Wybierz biegłości'"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="mb-3">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!originForm.valid">Dodaj
+        </button>
+      </div>
+
+    </form>
+  </div>
   <div class="col">
     <h2>Dodaj biegłość</h2>
     <form [formGroup]="proficiencyForm" (ngSubmit)="onProficiencySubmit()">

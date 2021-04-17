@@ -3,6 +3,7 @@ import {NgModule} from "@angular/core";
 import {HeroComponent} from "./hero/hero.component";
 import {RaceComponent} from "./race/race.component";
 import {AdminComponent} from "./admin/admin.component";
+import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver.service";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
@@ -16,7 +17,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    resolve: {
+      proficiences: ProficienciesResolverService
+    }
   }
 ];
 

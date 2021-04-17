@@ -10,7 +10,7 @@ export class ProficiencyService {
   constructor(private http: HttpClient) {}
 
   get() {
-    return this.http.get<Proficiency[]>("http://localhost:8080/proficencies")
+    return this.http.get<Proficiency[]>("http://localhost:8080/proficiencies")
   }
 
   add(proficiency: Proficiency): Observable<Proficiency> {

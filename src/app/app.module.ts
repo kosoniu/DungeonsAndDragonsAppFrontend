@@ -13,6 +13,10 @@ import { AdminComponent } from './admin/admin.component';
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProficiencyComponent } from './proficiency/proficiency.component';
 import {ProficiencyService} from "./proficiency/proficiency.service";
+import { OriginComponent } from './origin/origin.component';
+import {OriginService} from "./origin/origin.service";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver.service";
 
 @NgModule({
   declarations: [
@@ -21,19 +25,23 @@ import {ProficiencyService} from "./proficiency/proficiency.service";
     HeroComponent,
     RaceComponent,
     AdminComponent,
-    ProficiencyComponent
+    ProficiencyComponent,
+    OriginComponent
   ],
-    imports: [
-      BrowserModule,
-      HttpClientModule,
-      RouterModule,
-      AppRoutingModule,
-      FormsModule,
-      ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule
+  ],
   providers: [
     HeroService,
-    ProficiencyService
+    ProficiencyService,
+    OriginService,
+    ProficienciesResolverService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,8 @@
 
 export class Proficiency {
-  private id: number;
-  private name: string;
-  private type: string;
+  id: number;
+  name: string;
+  type: string;
 
   constructor(id: number, name: string, type: string) {
     this.id = id;
