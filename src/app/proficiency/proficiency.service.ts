@@ -7,13 +7,15 @@ import {Observable} from "rxjs";
 @Injectable({providedIn: 'root'})
 export class ProficiencyService {
 
+  private url = "http://localhost:8080/proficiencies";
+
   constructor(private http: HttpClient) {}
 
   get() {
-    return this.http.get<Proficiency[]>("http://localhost:8080/proficiencies")
+    return this.http.get<Proficiency[]>(this.url)
   }
 
   add(proficiency: Proficiency): Observable<Proficiency> {
-    return this.http.post<Proficiency>("http://localhost:8080/proficiencies", proficiency);
+    return this.http.post<Proficiency>(this.url, proficiency);
   }
 }

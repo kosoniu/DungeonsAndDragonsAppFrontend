@@ -1,12 +1,12 @@
 
 export class Proficiency {
-  id: number;
+  proficiencyId: {value: number};
   name: string;
-  type: string;
+  proficiencyType: string;
 
-  constructor(id: number, name: string, type: string) {
-    this.id = id;
+  constructor(proficiencyId: {value: number}, name: string, proficiencyType: string) {
+    this.proficiencyId = proficiencyId;
     this.name = name;
-    this.type = type;
+    this.proficiencyType = proficiencyType;
   }
 }

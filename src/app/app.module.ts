@@ -9,7 +9,6 @@ import {HttpClientModule} from "@angular/common/http";
 import { RaceComponent } from './race/race.component';
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
-import { AdminComponent } from './admin/admin.component';
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProficiencyComponent } from './proficiency/proficiency.component';
 import {ProficiencyService} from "./proficiency/proficiency.service";
@@ -17,6 +16,10 @@ import { OriginComponent } from './origin/origin.component';
 import {OriginService} from "./origin/origin.service";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver.service";
+import { OriginItemComponent } from './origin/origin-item/origin-item.component';
+import {OriginsResolverService} from "./origin/origins-resolver.service";
+import { ProficiencyItemComponent } from './proficiency/proficiency-item/proficiency-item.component';
+import {ProficiencyFilter} from "./utils/utils.service";
 
 @NgModule({
   declarations: [
@@ -24,9 +27,11 @@ import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver
     HeaderComponent,
     HeroComponent,
     RaceComponent,
-    AdminComponent,
     ProficiencyComponent,
-    OriginComponent
+    OriginComponent,
+    OriginItemComponent,
+    ProficiencyItemComponent,
+    ProficiencyFilter
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver
     HeroService,
     ProficiencyService,
     OriginService,
-    ProficienciesResolverService
+    ProficienciesResolverService,
+    OriginsResolverService
   ],
   bootstrap: [AppComponent]
 })

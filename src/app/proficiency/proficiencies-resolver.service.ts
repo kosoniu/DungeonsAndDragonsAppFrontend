@@ -10,7 +10,6 @@ export class ProficienciesResolverService implements Resolve<Proficiency[]> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Proficiency[]> | Promise<Proficiency[]> | Proficiency[] {
     return this.proficiencyService.get();
-
   }
 
 }
