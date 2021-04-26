@@ -35,4 +35,8 @@ export class ProficiencyComponent implements OnInit {
       });
   }
 
+  onDeleteProficiency() {
+    this.proficencyService.get().subscribe(proficiencies => this.proficiencies = proficiencies);
+  }
+
 }

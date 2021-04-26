@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ProficiencyService} from "../proficiency.service";
 
 @Component({
   selector: 'app-proficiency-item',
@@ -10,9 +11,15 @@ export class ProficiencyItemComponent implements OnInit {
   @Input() name: string;
   @Input() proficiencyType: string;
 
-  constructor() { }
+  @Output() stateChanged = new EventEmitter<boolean>();
+
+  constructor(private proficiencyService: ProficiencyService) { }
 
   ngOnInit(): void {
+  }
+
+  onDelete(id: number) {
+    return this.proficiencyService.delete(id).subscribe(response => this.stateChanged.emit());
   }
 
 }

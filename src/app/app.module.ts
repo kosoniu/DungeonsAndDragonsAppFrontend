@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeroComponent } from './hero/hero.component';
 import {HeroService} from "./hero/hero.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { RaceComponent } from './race/race.component';
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
@@ -20,6 +20,8 @@ import { OriginItemComponent } from './origin/origin-item/origin-item.component'
 import {OriginsResolverService} from "./origin/origins-resolver.service";
 import { ProficiencyItemComponent } from './proficiency/proficiency-item/proficiency-item.component';
 import {ProficiencyFilter} from "./utils/utils.service";
+import {HttpErrorInterceptor} from "./utils/httperror.interceptor";
+import {RacesResolverService} from "./race/races-resolver.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,13 @@ import {ProficiencyFilter} from "./utils/utils.service";
     ProficiencyService,
     OriginService,
     ProficienciesResolverService,
-    OriginsResolverService
+    OriginsResolverService,
+    RacesResolverService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

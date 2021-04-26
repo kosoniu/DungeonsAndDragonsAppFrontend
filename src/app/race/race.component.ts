@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RaceService} from "./race.service";
 import {Race} from "./race.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-race',
@@ -10,15 +11,14 @@ import {Race} from "./race.model";
 export class RaceComponent implements OnInit {
 
   races: Race[] = [];
-  private heroesSubscription;
 
-  constructor(private raceService: RaceService) { }
-
-  ngOnInit(): void {
-    this.heroesSubscription = this.raceService.get().subscribe(result => {
-      console.log(result);
-      this.races = result;
+  constructor(private raceService: RaceService, private route: ActivatedRoute) {
+    this.route.data.subscribe(data => {
+      console.log(data.races)
+      this.races = data.races
     });
   }
+
+  ngOnInit(): void {}
 
 }

@@ -6,6 +6,7 @@ import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver
 import {OriginComponent} from "./origin/origin.component";
 import {OriginsResolverService} from "./origin/origins-resolver.service";
 import {ProficiencyComponent} from "./proficiency/proficiency.component";
+import {RacesResolverService} from "./race/races-resolver.service";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
@@ -15,7 +16,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'races',
-    component: RaceComponent
+    component: RaceComponent,
+    resolve: {
+      races: RacesResolverService
+    }
   },
   {
     path: 'origins',
