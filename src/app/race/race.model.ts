@@ -1,10 +1,15 @@
+import {RaceFeature} from "./race-feature.model";
 
 export class Race {
-  private raceId: number;
-  private name: string;
+  raceId: {value: number};
+  name: string;
+  description: string;
+  raceFeatures: RaceFeature[]
 
-  constructor(raceId: number, name: string) {
+  constructor(raceId: {value: number}, name: string, description: string, raceFeatures: RaceFeature[]) {
     this.raceId = raceId;
     this.name = name;
+    this.description = description;
+    this.raceFeatures = raceFeatures;
   }
 }

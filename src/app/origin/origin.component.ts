@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ProficiencyService} from "../proficiency/proficiency.service";
 import {OriginService} from "./origin.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";

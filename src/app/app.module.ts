@@ -22,6 +22,7 @@ import { ProficiencyItemComponent } from './proficiency/proficiency-item/profici
 import {ProficiencyFilter} from "./utils/utils.service";
 import {HttpErrorInterceptor} from "./utils/httperror.interceptor";
 import {RacesResolverService} from "./race/races-resolver.service";
+import { RaceItemComponent } from './race/race-item/race-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {RacesResolverService} from "./race/races-resolver.service";
     OriginComponent,
     OriginItemComponent,
     ProficiencyItemComponent,
-    ProficiencyFilter
+    ProficiencyFilter,
+    RaceItemComponent
   ],
   imports: [
     BrowserModule,
