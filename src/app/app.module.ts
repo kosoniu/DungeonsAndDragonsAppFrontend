@@ -17,12 +17,14 @@ import {OriginService} from "./origin/origin.service";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver.service";
 import { OriginItemComponent } from './origin/origin-item/origin-item.component';
-import {OriginsResolverService} from "./origin/origins-resolver.service";
+import {OriginResolverService} from "./origin/origin-resolver.service";
 import { ProficiencyItemComponent } from './proficiency/proficiency-item/proficiency-item.component';
 import {ProficiencyFilter} from "./utils/utils.service";
 import {HttpErrorInterceptor} from "./utils/httperror.interceptor";
 import {RacesResolverService} from "./race/races-resolver.service";
 import { RaceItemComponent } from './race/race-item/race-item.component';
+import { ClassComponent } from './class/class.component';
+import {ClassResolverService} from "./class/class-resolver.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { RaceItemComponent } from './race/race-item/race-item.component';
     OriginItemComponent,
     ProficiencyItemComponent,
     ProficiencyFilter,
-    RaceItemComponent
+    RaceItemComponent,
+    ClassComponent
   ],
   imports: [
     BrowserModule,
@@ -51,13 +54,14 @@ import { RaceItemComponent } from './race/race-item/race-item.component';
     ProficiencyService,
     OriginService,
     ProficienciesResolverService,
-    OriginsResolverService,
+    OriginResolverService,
     RacesResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true
-    }
+    },
+    ClassResolverService
   ],
   bootstrap: [AppComponent]
 })

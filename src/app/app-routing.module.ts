@@ -4,9 +4,11 @@ import {HeroComponent} from "./hero/hero.component";
 import {RaceComponent} from "./race/race.component";
 import {ProficienciesResolverService} from "./proficiency/proficiencies-resolver.service";
 import {OriginComponent} from "./origin/origin.component";
-import {OriginsResolverService} from "./origin/origins-resolver.service";
+import {OriginResolverService} from "./origin/origin-resolver.service";
 import {ProficiencyComponent} from "./proficiency/proficiency.component";
 import {RacesResolverService} from "./race/races-resolver.service";
+import {ClassComponent} from "./class/class.component";
+import {ClassResolverService} from "./class/class-resolver.service";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
@@ -22,11 +24,18 @@ const appRoutes: Routes = [
     }
   },
   {
+    path: 'classes',
+    component: ClassComponent,
+    resolve: {
+      races: ClassResolverService
+    }
+  },
+  {
     path: 'origins',
     component: OriginComponent,
     resolve: {
       proficiencies: ProficienciesResolverService,
-      origins: OriginsResolverService
+      origins: OriginResolverService
     }
   },
   {
