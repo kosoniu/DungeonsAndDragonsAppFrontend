@@ -1,15 +1,21 @@
 import {Race} from "../race/race.model";
+import {Origin} from "../origin/origin.model";
+import {Class} from "../class/class.model";
 
 export class Hero {
-  public name: string;
-  public level: number;
-  public heroId: number;
-  public race: Race;
+  heroId: {value: number};
+  name: string;
+  level: number;
+  race: Race;
+  origin: Origin;
+  clazz: Class;
 
-  constructor(name: string, level: number, heroId: number, race: Race) {
+  constructor(heroId:{value: number}, name: string, level: number, race: Race, origin: Origin, clazz: Class) {
     this.name = name;
     this.level = level;
     this.heroId = heroId;
     this.race = race;
+    this.origin = origin;
+    this.clazz = clazz;
   }
 }

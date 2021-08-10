@@ -20,11 +20,7 @@ export class RaceComponent implements OnInit {
 
   constructor(private raceService: RaceService, private route: ActivatedRoute) {
     this.races = [];
-
-    this.route.data.subscribe(data => {
-      console.log(data.races)
-      this.races = data.races
-    });
+    this.route.data.subscribe(data => this.races = data.races);
   }
 
   ngOnInit(): void {}
@@ -45,8 +41,11 @@ export class RaceComponent implements OnInit {
     this.features.push(this.createItem());
   }
 
+  deleteItem(): void {
+    this.features.removeAt(this.features.length - 1);
+  }
+
   onSubmit() {
-    console.log(this.raceForm.value)
     this.raceService.add(this.raceForm.value).subscribe(() => {
       this.raceForm.reset()
       this.raceService.get().subscribe(races => this.races = races);

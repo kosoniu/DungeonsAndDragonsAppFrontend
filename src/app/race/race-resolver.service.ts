@@ -5,7 +5,7 @@ import {Race} from "./race.model";
 import {RaceService} from "./race.service";
 
 @Injectable()
-export class RacesResolverService implements Resolve<Race[]> {
+export class RaceResolverService implements Resolve<Race[]> {
   constructor(private raceService: RaceService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Race[]> | Promise<Race[]> | Race[] {

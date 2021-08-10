@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-5">
+  <div class="col">
     <h2>Dodaj Rasę</h2>
     <form [formGroup]="raceForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
@@ -34,7 +34,10 @@
               class="form-control "></textarea>
           </div>
         </div>
-        <button class="btn btn-primary mt-3" type="button" (click)="addItem()">Dodaj cechę</button>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-primary mt-3" type="button" (click)="addItem()">Dodaj cechę</button>
+          <button [disabled]="features.length <= 1" class="btn btn-danger mt-3" type="button" (click)="deleteItem()">Usuń cechę</button>
+        </div>
       </div>
       <hr>
       <div class="mb-3">

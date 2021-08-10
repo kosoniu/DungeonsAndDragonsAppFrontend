@@ -6,16 +6,16 @@ export class Class {
   description: string;
   hitDice: number;
   healthPoints: number;
-  hitDiceOnHigherLevels;
+  healthPointsOnHigherLevels;
   proficiencies: Proficiency[];
 
-  constructor(classId: { value: number }, name: string, description: string, hitDice: number, healthPoints: number, hitDiceOnHigherLevels, proficiencies: Proficiency[]) {
+  constructor(classId: { value: number }, name: string, description: string, hitDice: number, healthPoints: number, healthPointsOnHigherLevels, proficiencies: Proficiency[]) {
     this.classId = classId;
     this.name = name;
     this.description = description;
     this.hitDice = hitDice;
     this.healthPoints = healthPoints;
-    this.hitDiceOnHigherLevels = hitDiceOnHigherLevels;
+    this.healthPointsOnHigherLevels = healthPointsOnHigherLevels;
     this.proficiencies = proficiencies;
   }
 }

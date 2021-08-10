@@ -21,10 +21,11 @@ import {OriginResolverService} from "./origin/origin-resolver.service";
 import { ProficiencyItemComponent } from './proficiency/proficiency-item/proficiency-item.component';
 import {ProficiencyFilter} from "./utils/utils.service";
 import {HttpErrorInterceptor} from "./utils/httperror.interceptor";
-import {RacesResolverService} from "./race/races-resolver.service";
+import {RaceResolverService} from "./race/race-resolver.service";
 import { RaceItemComponent } from './race/race-item/race-item.component';
 import { ClassComponent } from './class/class.component';
 import {ClassResolverService} from "./class/class-resolver.service";
+import { ClassItemComponent } from './class/class-item/class-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {ClassResolverService} from "./class/class-resolver.service";
     ProficiencyItemComponent,
     ProficiencyFilter,
     RaceItemComponent,
-    ClassComponent
+    ClassComponent,
+    ClassItemComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import {ClassResolverService} from "./class/class-resolver.service";
     OriginService,
     ProficienciesResolverService,
     OriginResolverService,
-    RacesResolverService,
+    RaceResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
