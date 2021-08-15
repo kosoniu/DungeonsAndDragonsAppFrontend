@@ -26,6 +26,7 @@ import { RaceItemComponent } from './race/race-item/race-item.component';
 import { ClassComponent } from './class/class.component';
 import {ClassResolverService} from "./class/class-resolver.service";
 import { ClassItemComponent } from './class/class-item/class-item.component';
+import { HeroItemComponent } from './hero/hero-item/hero-item.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ClassItemComponent } from './class/class-item/class-item.component';
     ProficiencyFilter,
     RaceItemComponent,
     ClassComponent,
-    ClassItemComponent
+    ClassItemComponent,
+    HeroItemComponent
   ],
   imports: [
     BrowserModule,

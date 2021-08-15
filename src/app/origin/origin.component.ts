@@ -49,6 +49,7 @@ export class OriginComponent implements OnInit {
   onOriginSubmit() {
     this.originForm.value.proficiencies = this.proficiencies.filter(proficiency => this.isProficiencyInArray(proficiency, this.originForm.value.proficiencies))
     this.originService.add(this.originForm.value).subscribe(() => {
+      console.log(this.originForm.value)
       this.originForm.reset()
       this.selectedItems = [];
       this.originService.get().subscribe(origins => this.origins = origins);
