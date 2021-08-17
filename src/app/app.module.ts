@@ -27,6 +27,8 @@ import { ClassComponent } from './class/class.component';
 import {ClassResolverService} from "./class/class-resolver.service";
 import { ClassItemComponent } from './class/class-item/class-item.component';
 import { HeroItemComponent } from './hero/hero-item/hero-item.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { CalculatorItemComponent } from './calculator/calculator-item/calculator-item.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { HeroItemComponent } from './hero/hero-item/hero-item.component';
     RaceItemComponent,
     ClassComponent,
     ClassItemComponent,
-    HeroItemComponent
+    HeroItemComponent,
+    CalculatorComponent,
+    CalculatorItemComponent
   ],
   imports: [
     BrowserModule,

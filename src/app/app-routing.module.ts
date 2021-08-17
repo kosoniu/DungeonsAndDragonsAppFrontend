@@ -9,6 +9,7 @@ import {ProficiencyComponent} from "./proficiency/proficiency.component";
 import {RaceResolverService} from "./race/race-resolver.service";
 import {ClassComponent} from "./class/class.component";
 import {ClassResolverService} from "./class/class-resolver.service";
+import {CalculatorComponent} from "./calculator/calculator.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
@@ -50,6 +51,10 @@ const appRoutes: Routes = [
     resolve: {
       proficiencies: ProficienciesResolverService,
     }
+  },
+  {
+    path: 'calculator',
+    component: CalculatorComponent
   }
 ];
 
