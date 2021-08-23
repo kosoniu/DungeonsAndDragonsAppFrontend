@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subject} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-calculator',
@@ -9,7 +10,11 @@ import {Subject} from "rxjs";
 export class CalculatorComponent implements OnInit {
 
   totalCost: number = 0;
+  chosenRace;
+  chosenSubrace;
   resetEventSubject: Subject<void> = new Subject<void>();
+
+  raceForm: FormGroup;
 
   private costs = {
     "strength": 0,
@@ -34,39 +39,75 @@ export class CalculatorComponent implements OnInit {
   races = [
     {
       name: "Elf",
-      archetypes: [
-        "Elf Wysoki",
-        "Elf Leśny"
-      ]
-    },
-    {
-      name: "Człowiek",
-      archetypes: [
-        "Człowiek",
-        "Wariant człowieka"
+      modifiers: {
+        "dexterity": 2
+      },
+      subraces: [
+        {
+          name: "Elf Wysoki",
+          modifiers: {
+            "intelligence": 1
+          }
+        },
+        {
+          name: "Elf Leśny",
+          modifiers: {
+            "wisdom": 1
+          }
+        }
       ]
     },
     {
       name: "Krasnolud",
-      archetypes: [
-        "Krasnolud Tarczowy",
-        "Krasnolud Wzgórzowy"
+      modifiers: {
+        "constitution": 2
+      },
+      subraces: [
+        {
+          name: "Krasnolud Górski",
+          modifiers: {
+            "strength": 2
+          }
+        },
+        {
+          name: "Krasnolud Wzgórzowy",
+          modifiers: {
+            "wisdom": 1
+          }
+        }
       ]
     }
   ];
 
-  attributes: string[] = [
-    "Siła",
-    "Zręczność",
-    "Kondycja",
-    "Mądrość",
-    "Inteligencja",
-    "Charyzma"
-  ];
+  attributes = {
+    "strength": "Siła",
+    "dexterity": "Zręczność",
+    "constitution": "Kondycja",
+    "wisdom": "Mądrość",
+    "intelligence": "Inteligencja",
+    "charisma": "Charyzma"
+  }
 
-  constructor() { }
+  constructor() {
+    this.raceForm = new FormGroup({
+      race: new FormControl(this.races[0].name, [Validators.required]),
+      subrace: new FormControl(this.races[0].subraces[0].name, [Validators.required])
+    });
+
+    this.chosenRace = this.races[0];
+    this.chosenSubrace = this.chosenRace.subraces[0];
+  }
 
   ngOnInit(): void {
+
+    this.raceForm.get("race").valueChanges.subscribe(chosenRace => {
+      this.chosenRace = this.races.find(race => race.name === chosenRace);
+      this.raceForm.patchValue({
+        subrace: this.chosenRace.subraces[0].name
+      });
+    });
+
+    this.raceForm.get("subrace").valueChanges.subscribe(chosenSubrace => this.chosenSubrace = this.chosenRace.subraces.find(subrace => subrace.name === chosenSubrace));
   }
 
   onAttributeChange(event) {
@@ -76,6 +117,18 @@ export class CalculatorComponent implements OnInit {
 
   emitResetEvent() {
     this.resetEventSubject.next();
+  }
+
+  getRacialModifierForAttribute(attribute) {
+    let modifierValue = 0;
+
+    if(this.chosenRace.modifiers[attribute] != null) {
+      modifierValue = this.chosenRace.modifiers[attribute];
+    } else if (this.chosenSubrace.modifiers[attribute] != null) {
+      modifierValue = this.chosenSubrace.modifiers[attribute];
+    }
+
+    return modifierValue;
   }
 
 }

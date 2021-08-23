@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
 
@@ -7,7 +7,7 @@ import {Observable, Subscription} from "rxjs";
   templateUrl: './calculator-item.component.html',
   styleUrls: ['./calculator-item.component.css']
 })
-export class CalculatorItemComponent implements OnInit, OnDestroy {
+export class CalculatorItemComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() name: string;
   @Input() attributeValue: number;
@@ -36,12 +36,12 @@ export class CalculatorItemComponent implements OnInit, OnDestroy {
   };
 
   private attributes = {
-    "Siła": "strength",
-    "Zręczność": "dexterity",
-    "Kondycja": "constitution",
-    "Mądrość": "wisdom",
-    "Inteligencja": "intelligence",
-    "Charyzma": "charisma"
+    "strength": "Siła",
+    "dexterity": "Zręczność",
+    "constitution": "Kondycja",
+    "wisdom": "Mądrość",
+    "intelligence": "Inteligencja",
+    "charisma": "Charyzma"
   }
 
   constructor() {}
@@ -54,35 +54,47 @@ export class CalculatorItemComponent implements OnInit, OnDestroy {
     this.summaryAttributeValue = this.calculatorFormGroup.value.attributeValue + this.racialBonus;
     this.modifier = -5 + Math.floor(this.summaryAttributeValue / 2);
 
-    this.resetEventSubscription = this.resetEvent.subscribe(() => {
-      this.calculatorFormGroup.reset({
-        attributeValue: 8
-      });
-      this.cost = 0;
-      this.attributeValue = 8;
-      this.summaryAttributeValue = this.calculatorFormGroup.value.attributeValue + this.racialBonus;
-      this.modifier = -5 + Math.floor(this.summaryAttributeValue / 2);
-
-      this.stateChanged.emit({
-        attribute: this.attributes[this.name],
-        cost: this.costs[String(this.attributeValue)]
-      });
-    });
+    this.resetEventSubscription = this.resetEvent.subscribe(() => this.resetForm());
   }
 
   ngOnDestroy() {
     this.resetEventSubscription.unsubscribe();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+      if(changes.racialBonus != null && changes.racialBonus.previousValue != null) {
+        this.racialBonus = changes.racialBonus.currentValue;
+        this.calculateViewValues();
+      }
+  }
+
   onAttributeValueChange(): void {
+    this.calculateViewValues();
+    this.stateChanged.emit({
+      attribute: Object.keys(this.attributes).find(key => this.name === this.attributes[key]),
+      cost: this.costs[String(this.attributeValue)]
+    });
+  }
+
+  private resetForm() {
+    this.calculatorFormGroup.reset({
+      attributeValue: 8
+    });
+    this.cost = 0;
+    this.attributeValue = 8;
+    this.summaryAttributeValue = this.calculatorFormGroup.value.attributeValue + this.racialBonus;
+    this.modifier = -5 + Math.floor(this.summaryAttributeValue / 2);
+    this.stateChanged.emit({
+      attribute: Object.keys(this.attributes).find(key => this.name === this.attributes[key]),
+      cost: this.costs[String(this.attributeValue)]
+    });
+  }
+
+  private calculateViewValues() {
     this.summaryAttributeValue = this.calculatorFormGroup.value.attributeValue + this.racialBonus;
     this.attributeValue = this.calculatorFormGroup.value.attributeValue;
     this.cost = this.costs[String(this.attributeValue)];
     this.modifier = -5 + Math.floor(this.summaryAttributeValue / 2);
-    this.stateChanged.emit({
-      attribute: this.attributes[this.name],
-      cost: this.costs[String(this.attributeValue)]
-    });
   }
 
 }
