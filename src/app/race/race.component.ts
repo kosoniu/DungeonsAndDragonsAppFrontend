@@ -47,7 +47,7 @@ export class RaceComponent implements OnInit {
 
   onSubmit() {
     this.raceService.add(this.raceForm.value).subscribe(() => {
-      this.raceForm.reset()
+      this.raceForm.reset();
       this.raceService.get().subscribe(races => this.races = races);
     });
   }

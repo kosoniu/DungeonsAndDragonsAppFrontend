@@ -48,7 +48,9 @@ export class HeroComponent implements OnInit {
     this.heroForm.value.origin = this.origins.filter(origin => Number(this.heroForm.value.origin) === origin.originId.value)[0];
 
     this.heroService.add(this.heroForm.value).subscribe(() => {
-      this.heroForm.reset()
+      this.heroForm.reset({
+        level: 1
+      })
       this.heroService.get().subscribe(heroes => this.heroes = heroes);
     });
   }
